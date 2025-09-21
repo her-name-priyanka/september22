@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Priyankaaa💫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; 
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(90deg, #ff00de, #ff9900, #d400ff, #00f8df, #ff00de);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 10s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: opacity 1s ease-out;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: linear-gradient(90deg, #ff00de, #ff9900, #d400ff, #00f8df, #ff00de);
+            background-size: 400% 100%;
+            z-index: -1;
+            animation: gradient-animation 10s ease infinite;
+            border-radius: inherit;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="overlay"></div>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="./newyork.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="main-content" class="min-h-screen flex flex-col items-center justify-center p-4 relative z-0 transition-opacity duration-1000">
+        
+        <h1 id="main-heading" class="heading-font text-5xl md:text-7xl lg:text-8xl text-center font-bold mb-8 text-shadow-lg">
+            <span class="animated-gradient">Happy Birthday</span><br class="sm:hidden"> 
+        </h1>
+
+        <div id="glass-card" class="glass-card w-full max-w-2xl rounded-2xl shadow-2xl p-2 flex flex-col items-center">
+            <div class="aspect-w-16 aspect-h-9 w-full rounded-xl overflow-hidden">
+                <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                    <source src="./priyankaaa.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <button id="surprise-button" class="mt-4 px-8 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75 transition-all duration-300 transform hover:scale-105">
+                Surpriseee🎊
+            </button>
+        </div>
+    </div>
+    
+    <div id="wish-card" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-20 opacity-0 pointer-events-none transition-opacity duration-1000">
+        <div class="glass-card w-full max-w-lg rounded-2xl shadow-2xl p-8 text-center relative transform scale-90 transition-transform duration-700">
+            <button id="close-card-button" class="absolute top-2 right-4 text-white text-3xl font-bold hover:text-gray-300">&times;</button>
+            <h2 class="script-font text-6xl mb-4 text-white">For You!</h2>
+            <p class="text-lg text-gray-200 leading-relaxed">
+                Happy Birthday, Priyankaaa💫 May this year push you to reach higher, dream bolder, and believe in the incredible strength you already carry. Remember, no challenge is greater than your spirit, and no dream is beyond your reach. Keep moving forward with courage and confidence—the world needs your light. ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const surpriseButton = document.getElementById('surprise-button');
+        const mainContent = document.getElementById('main-content');
+        const wishCard = document.getElementById('wish-card');
+        const wishCardContent = wishCard.querySelector('.glass-card');
+        const closeCardButton = document.getElementById('close-card-button');
+
+        surpriseButton.addEventListener('click', () => {
+            
+            mainContent.style.opacity = '0';
+            mainContent.style.pointerEvents = 'none';
+
+            wishCard.style.opacity = '1';
+            wishCard.style.pointerEvents = 'auto';
+            setTimeout(() => {
+                wishCardContent.style.transform = 'scale(1)';
+            }, 50); 
+
+            surpriseButton.disabled = true;
+        });
+
+        closeCardButton.addEventListener('click', () => {
+            wishCardContent.style.transform = 'scale(0.9)';
+            wishCard.style.opacity = '0';
+            wishCard.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                mainContent.style.pointerEvents = 'auto';
+            }, 500); 
+        });
+    </script>
+</body>
+</html>
+
